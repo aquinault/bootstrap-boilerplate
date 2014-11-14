@@ -1,3 +1,10 @@
+
+git submodule init
+git submodule update
+
+cd bootstrap
+git checkout master
+
 Bootstrap boilerplate
 =====================
 
@@ -6,7 +13,7 @@ Bootstrap boilerplate ready for customization. Override variables, mixins, class
 First launch
 ------------
 
-The first time you launch a grunt task, if you did not modify the variables.less file, it will be copied from bootstrap folder to the less folder, with the font path changed to be relative to the bootstrap folder. From then, you can modify variables.less to suit your needs, it won't be overriden. 
+The first time you launch a grunt task, if you did not modify the variables.less file, it will be copied from bootstrap folder to the less folder, with the font path changed to be relative to the bootstrap folder. From then, you can modify variables.less to suit your needs, it won't be overriden.
 If you don't use Grunt, just modify the variables.less file and compile style.less manually.
 
 Overrides
