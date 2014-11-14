@@ -1,4 +1,4 @@
-'use strict';//jshint
+'use strict'; //jshint
 
 module.exports = function(grunt) {
   grunt.initConfig({
@@ -18,7 +18,7 @@ module.exports = function(grunt) {
           'less/*.less',
           'bootstrap/less/*.less',
         ],
-        tasks: ['copy:variables','less'],
+        tasks: ['copy:variables', 'less'],
       },
     },
     cssmin: {
@@ -34,6 +34,13 @@ module.exports = function(grunt) {
       }
     },
     copy: {
+      js: {
+        expand: true,
+        cwd: 'bootstrap/dist/js',
+        src: 'bootstrap*.js',
+        dest: 'js'
+      },
+
       variables: {
         expand: true,
         cwd: 'bootstrap/less',
@@ -41,11 +48,13 @@ module.exports = function(grunt) {
         dest: 'less',
         filter: function(filepath) {
           var contents = grunt.file.read('less/variables.less');
-          return contents == '// Override Bootstrap variables here.\n\n@icon-font-path: "../bootstrap/fonts/";';
+          return contents ==
+            '// Override Bootstrap variables here.\n\n@icon-font-path: "../bootstrap/fonts/";';
         },
         options: {
-          process: function (contents, srcpath) {
-            return contents.replace(/@icon-font-path:[\s\t]*"[^"]+"/g, '@icon-font-path: "../bootstrap/fonts/"');
+          process: function(contents, srcpath) {
+            return contents.replace(/@icon-font-path:[\s\t]*"[^"]+"/g,
+              '@icon-font-path: "../bootstrap/fonts/"');
           }
         }
       },
@@ -70,7 +79,8 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'copy:variables',
     'less',
-    'cssmin'
+    'cssmin',
+    'copy:js'
   ]);
 
   grunt.registerTask('override', function(n) {
